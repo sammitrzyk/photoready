@@ -1,26 +1,174 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand Colors */
+  --color-pr-navy:        #0B1F3A;
+  --color-pr-navy-soft:   #153557;
+  --color-pr-cream:       #F7F3EC;
+  --color-pr-warm-white:  #FFFDF8;
+  --color-pr-stone:       #E8E1D6;
+  --color-pr-taupe:       #D5CABE;
+  --color-pr-blue:        #159AD6;
+  --color-pr-blue-dark:   #0E7AAF;
+  --color-pr-gold:        #C99645;
+  --color-pr-text:        #1F2A35;
+  --color-pr-text-muted:  #5A6472;
+
+  /* shadcn tokens mapped to brand */
+  --color-background:     var(--background);
+  --color-foreground:     var(--foreground);
+  --color-card:           var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover:        var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary:        var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary:      var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:          var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent:         var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive:    var(--destructive);
+  --color-border:         var(--border);
+  --color-input:          var(--input);
+  --color-ring:           var(--ring);
+  --radius-sm:  calc(var(--radius) * 0.6);
+  --radius-md:  calc(var(--radius) * 0.8);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+
+  /* Font families — these create font-sans, font-display, font-mono utility classes */
+  --font-family-sans:    var(--font-inter, system-ui, sans-serif);
+  --font-family-display: var(--font-manrope, system-ui, sans-serif);
+  --font-family-mono:    ui-monospace, monospace;
+  /* Also expose as --font-* for direct CSS var usage */
+  --font-sans:    var(--font-inter, system-ui, sans-serif);
+  --font-display: var(--font-manrope, system-ui, sans-serif);
+  --font-mono:    ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background:           #FFFDF8;
+  --foreground:           #1F2A35;
+  --card:                 #FFFFFF;
+  --card-foreground:      #1F2A35;
+  --popover:              #FFFFFF;
+  --popover-foreground:   #1F2A35;
+  --primary:              #0B1F3A;
+  --primary-foreground:   #FFFDF8;
+  --secondary:            #F7F3EC;
+  --secondary-foreground: #1F2A35;
+  --muted:                #F7F3EC;
+  --muted-foreground:     #5A6472;
+  --accent:               #159AD6;
+  --accent-foreground:    #FFFFFF;
+  --destructive:          oklch(0.577 0.245 27.325);
+  --border:               #D5CABE;
+  --input:                #E8E1D6;
+  --ring:                 #159AD6;
+  --radius:               0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #FFFDF8;
+    color: #1F2A35;
+    font-family: var(--font-inter, system-ui, sans-serif);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-manrope, system-ui, sans-serif);
+    font-weight: 700;
+    color: #0B1F3A;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  h1 {
+    font-weight: 800;
+    line-height: 1.02;
+  }
+
+  .font-display {
+    font-family: var(--font-manrope, system-ui, sans-serif) !important;
+  }
+
+  ::selection {
+    background-color: #159AD6;
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #159AD6;
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Eyebrow label utility */
+@layer utilities {
+  .pr-eyebrow {
+    font-family: var(--font-inter, system-ui, sans-serif);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #159AD6;
+  }
+
+  .pr-eyebrow-light {
+    color: rgba(255,255,255,0.65);
+  }
+
+  .section-navy {
+    background-color: #0B1F3A;
+    color: #FFFDF8;
+  }
+
+  .section-cream {
+    background-color: #F7F3EC;
+  }
+
+  .section-stone {
+    background-color: #E8E1D6;
+  }
+
+  .pr-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pr-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .pr-container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
 }
