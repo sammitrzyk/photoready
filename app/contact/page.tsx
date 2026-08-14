@@ -20,6 +20,7 @@ export default function ContactPage() {
           register the "contact" form; real submissions are sent via
           fetch() from ContactForm.tsx with matching field names. */}
       <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact" />
         <input type="text" name="name" />
         <input type="email" name="email" />
         <input name="bot-field" />
