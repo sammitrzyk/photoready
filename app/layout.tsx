@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { RealtorStickyCTA } from "@/components/layout/RealtorStickyCTA";
 import { siteConfig } from "@/lib/site-config";
 import { organizationSchema, localBusinessSchema, websiteSchema } from "@/lib/schema";
 
@@ -59,10 +60,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify([localBusinessSchema, organizationSchema, websiteSchema]) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#FFFDF8] text-[#1F2A35]">
+      <body className="min-h-full flex flex-col bg-[#FFFDF8] text-[#1F2A35] pb-16 md:pb-0">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <RealtorStickyCTA />
       </body>
     </html>
   );

@@ -10,7 +10,8 @@ import {
 
 import { Container } from "@/components/ui/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { FinalCTA } from "@/components/sections/FinalCTA";
+import { AgentReferralForm } from "./AgentReferralForm";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "For Real Estate Agents | PhotoReady Home Prep",
@@ -72,6 +73,24 @@ const whatWeHandle = [
 export default function ForAgentsPage() {
   return (
     <>
+      {/* Hidden static form so Netlify's build bot can detect and
+          register the "agent-referral" form; real submissions are sent via
+          fetch() from AgentReferralForm.tsx with matching field names. */}
+      <form name="agent-referral" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <input type="text" name="brokerage" />
+        <select name="clientVolume">
+          <option value="1 client" />
+          <option value="2-3 clients" />
+          <option value="4-6 clients" />
+          <option value="7+ clients / ongoing" />
+        </select>
+        <textarea name="message" />
+        <input name="bot-field" />
+      </form>
+
       {/* Hero */}
       <section className="bg-[#0B1F3A] py-16 md:py-24">
         <Container>
@@ -168,28 +187,35 @@ export default function ForAgentsPage() {
         </Container>
       </section>
 
-      {/* CTA Band */}
-      <section className="bg-[#0B1F3A] py-14">
+      {/* Agent Referral Form */}
+      <section className="bg-[#0B1F3A] py-16 md:py-20">
         <Container>
-          <div className="text-center">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-white">
-              Ready to refer a client?
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="pr-eyebrow pr-eyebrow-light">READY TO REFER A CLIENT?</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3">
+              Partner with PhotoReady
             </h2>
-            <p className="text-white/70 mt-3 max-w-lg mx-auto">
-              Contact us with the property address and timeline. We&rsquo;ll
-              take it from there.
+            <p className="text-white/70 mt-4 text-lg">
+              Tell us a bit about your business and we&rsquo;ll follow up to
+              set up a smooth referral process for your listings.
             </p>
-            <Link
-              href="/contact"
-              className="inline-block mt-6 bg-[#159AD6] hover:bg-[#0E7AAF] text-white font-semibold px-6 py-3 rounded-lg transition-colors text-sm"
-            >
-              Get in Touch
-            </Link>
+          </div>
+
+          <div className="max-w-xl mx-auto">
+            <AgentReferralForm />
+
+            <p className="mt-6 text-center text-white/60 text-sm">
+              Prefer to call?{" "}
+              <a
+                href={siteConfig.phoneHref}
+                className="text-[#159AD6] font-semibold hover:underline"
+              >
+                {siteConfig.phone}
+              </a>
+            </p>
           </div>
         </Container>
       </section>
-
-      <FinalCTA />
     </>
   );
 }
