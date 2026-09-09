@@ -55,7 +55,7 @@ export function AgentReferralForm() {
     e.preventDefault();
     setError(false);
     try {
-      await fetch("/", {
+      await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encode({ "form-name": "agent-referral", ...form }),
@@ -88,7 +88,6 @@ export function AgentReferralForm() {
       onSubmit={handleSubmit}
       noValidate
       name="agent-referral"
-      data-netlify="true"
       className="bg-white border border-[#D5CABE] rounded-xl p-7 md:p-8"
     >
       <input type="hidden" name="form-name" value="agent-referral" />

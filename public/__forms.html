@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Form detection</title>
+  </head>
+  <body>
+    <!--
+      Static, plain-HTML form registry for Netlify Forms.
+
+      Netlify's build bot only detects forms in static HTML files — the
+      Next.js/OpenNext runtime can't prerender <form data-netlify> tags
+      inside app router pages, so all forms are declared here once and
+      the real client components (ContactForm.tsx, AgentReferralForm.tsx)
+      fetch-submit to /__forms.html with matching form-name + field names.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input name="bot-field" />
+    </form>
+
+    <form name="agent-referral" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="agent-referral" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="brokerage" />
+      <select name="clientVolume">
+        <option value="1 client"></option>
+        <option value="2-3 clients"></option>
+        <option value="4-6 clients"></option>
+        <option value="7+ clients / ongoing"></option>
+      </select>
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>

@@ -73,24 +73,6 @@ const whatWeHandle = [
 export default function ForAgentsPage() {
   return (
     <>
-      {/* Hidden static form so Netlify's build bot can detect and
-          register the "agent-referral" form; real submissions are sent via
-          fetch() from AgentReferralForm.tsx with matching field names. */}
-      <form name="agent-referral" data-netlify="true" netlify-honeypot="bot-field" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="tel" name="phone" />
-        <input type="text" name="brokerage" />
-        <select name="clientVolume">
-          <option value="1 client" />
-          <option value="2-3 clients" />
-          <option value="4-6 clients" />
-          <option value="7+ clients / ongoing" />
-        </select>
-        <textarea name="message" />
-        <input name="bot-field" />
-      </form>
-
       {/* Hero */}
       <section className="bg-[#0B1F3A] py-16 md:py-24">
         <Container>

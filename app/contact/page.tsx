@@ -16,16 +16,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* Hidden static form so Netlify's build bot can detect and
-          register the "contact" form; real submissions are sent via
-          fetch() from ContactForm.tsx with matching field names. */}
-      <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-        <input type="hidden" name="form-name" value="contact" />
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input name="bot-field" />
-      </form>
-
       {/* Page Hero */}
       <section className="bg-[#0B1F3A] py-16">
         <Container>
